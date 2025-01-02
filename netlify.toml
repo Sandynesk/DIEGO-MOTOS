@@ -1,0 +1,9 @@
+
+[build]
+  publish = "public"  # Isso indica que a pasta 'public' é onde os arquivos de produção estão
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true

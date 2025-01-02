@@ -1,0 +1,193 @@
+.bg-custom {
+    background-color: hwb(0 65% 35%);  
+}
+
+.navbar .navbar-brand.custom-text {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif; /* Aplica a fonte Quicksand */
+
+}
+
+#pdf-button{
+  margin-bottom: 40px;
+  font-family: 'Quicksand', sans-serif; /* Aplica a fonte Quicksand */
+}
+
+body {
+  font-family: 'Quicksand', sans-serif !important; /* Aplica a fonte Quicksand */
+}
+
+/* From Uiverse.io by adamgiebl */ 
+button {
+    display: flex;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif; /* Aplica a fonte Quicksand */
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 17px;
+    padding: 0.8em 1.3em 0.8em 0.9em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(to right, #000000, #1c1c1c, #333333);
+
+    border: none;
+    letter-spacing: 0.05em;
+    border-radius: 16px;
+  }
+  
+  button svg {
+    margin-right: 3px;
+    transform: rotate(30deg);
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  
+  button span {
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  
+  button:hover svg {
+    transform: translateX(5px) rotate(90deg);
+  }
+  
+  button:hover span {
+    transform: translateX(7px);
+  }
+  
+
+  #productList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.product-info {
+    display: flex;
+    gap: 15px; /* Espaçamento entre as informações */
+    flex-wrap: wrap; /* Para garantir que os itens possam ir para a linha seguinte, se necessário */
+}
+
+.product-info div {
+    flex: 1 1 150px; /* Cada item pode ocupar no mínimo 150px, e cresce com base no espaço disponível */
+    text-align: left;
+}
+
+.delete-btn {
+    margin-left: 20px;
+    align-self: flex-start;
+}
+
+
+/* Definindo o layout flexível para o corpo da página */
+html, body {
+  height: 100%; /* Garantir que o corpo ocupe toda a altura da tela */
+  margin: 0; /* Remover margem padrão do navegador */
+  display: flex;
+  flex-direction: column; /* Organiza o conteúdo da página em uma coluna */
+}
+
+/* Estilo do footer */
+footer {
+  background-color: #333; /* Cor de fundo escura */
+  color: #fff; /* Texto branco */
+  padding: 20px 0;
+  text-align: center; /* Centraliza o conteúdo */
+  font-family: 'Arial', sans-serif;
+  font-size: 14px; /* Tamanho de fonte pequeno */
+  margin-top: auto; /* Faz o footer ser empurrado para o final da tela */
+}
+
+/* Estilo do conteúdo dentro do footer */
+footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Links do footer */
+footer nav a {
+  color: #fff; /* Cor branca para os links */
+  text-decoration: none; /* Remove o sublinhado */
+  margin: 0 10px; /* Espaço entre os links */
+}
+
+footer nav a:hover {
+  color: #007BFF; /* Cor de destaque ao passar o mouse */
+}
+
+/* Responsividade: Ajusta o layout em telas pequenas */
+@media (max-width: 600px) {
+  footer {
+    font-size: 12px; /* Menor tamanho de fonte para telas pequenas */
+  }
+}
+
+/* Animações */
+
+  /* Animação para o carregamento */
+  body {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Efeito de aumento no botão com animação mais suave */
+button:hover {
+  transform: scale(1.05); /* Aumenta o tamanho do botão */
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Efeito suave */
+}
+
+
+/* Slide-in para o footer */
+footer {
+    transform: translateY(100px);
+    opacity: 0;
+    animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Fade-in para o título */
+h2 {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIEGO MOTOS</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <nav class="navbar bg-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand custom-text" href="#">
+                <img src="DiegoLogo-removebg-preview.png" alt="Logo" width="auto" height="54" class="d-inline-block align-text-top">
+                Diego Motos
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Cadastro de Produtos</h1>
+
+        <!-- Formulário -->
+        <form id="productForm">
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="nome" class="form-label">Produto</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Digite o nome do produto">
+                </div>
+                <div class="col">
+                    <label for="preco" class="form-label">Preço Unitário</label>
+                    <input type="number" class="form-control" id="preco" placeholder="Digite o preço unitário">
+                </div>
+                <div class="col">
+                    <label for="quantidade" class="form-label">Quantidade</label>
+                    <input type="number" class="form-control" id="quantidade" placeholder="Digite a quantidade">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" onclick="enviarFormulario()" class="btn btn-primary">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Tabela para exibir os produtos -->
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço Unitário</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>Preço com Desconto</th>
+                    <th>Diferença</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                <!-- As linhas da tabela serão adicionadas aqui pelo JavaScript -->
+            </tbody>
+        </table>
+
+        <div class="col text-center mt-3" id="pdf-button">
+            <button type="button" onclick="exportarPDF()" class="btn btn-success">
+                Exportar para PDF
+            </button>
+        </div>
+
+    </div>
+
+    
+
+    <footer>
+        <div class="footer-content">
+          <p>&copy; 2025 Emanuel Sales. Todos os direitos reservados.</p>
+          <nav>
+            <a href="https://www.instagram.com/sandynesk/">Sobre</a> | 
+            <a href="#">Política de Privacidade</a> | 
+            <a href="https://api.whatsapp.com/send/?phone=71985288558">Contato</a>
+          </nav>
+        </div>
+      </footer>
+
+      
+
+
+    
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- jsPDF autoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
