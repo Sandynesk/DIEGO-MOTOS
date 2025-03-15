@@ -51,6 +51,7 @@
             </div>
         </form>
 
+        
         <!-- Tabela para exibir os produtos -->
         <table class="table table-bordered mt-4">
             <thead>
@@ -67,8 +68,25 @@
             <tbody id="productTableBody">
                 <!-- As linhas da tabela serão adicionadas aqui pelo JavaScript -->
             </tbody>
+            
         </table>
 
+        <div class="Valores-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="total-label">Valor Total (Sem Desconto)</td>
+                        <td id="valorTotalSemDesconto" class="total-value">R$ 0,00</td>
+                    </tr>
+                    <tr>
+                        <td class="total-label">Valor Total (Com Desconto)</td>
+                        <td id="valorTotalComDesconto" class="total-value">R$ 0,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botão para exportar para PDF -->
         <div class="col text-center mt-3" id="pdf-button">
             <button type="button" onclick="exportarPDF()" class="btn btn-success">
                 Exportar para PDF
