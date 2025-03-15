@@ -1,4 +1,7 @@
 // Função para adicionar os produtos na tabela
+
+let valorTotalSemDesconto = 0;
+let valorTotalComDesconto = 0;
 function enviarFormulario() {
     // Pegar os valores do formulário
     const nome = document.getElementById('nome').value;
@@ -15,6 +18,11 @@ function enviarFormulario() {
     const precoTotal = preco * quantidade;
     const precoComDesconto = precoTotal - (precoTotal * 0.06); // 6% de desconto
     const diferencaDesconto = precoTotal - precoComDesconto;
+
+    
+    // Atualizar os totais acumulados
+    valorTotalSemDesconto += precoTotal;
+    valorTotalComDesconto += precoComDesconto;
 
     // Criar uma nova linha na tabela
     const tabela = document.getElementById('productTableBody');
@@ -33,6 +41,10 @@ function enviarFormulario() {
     // Adicionar a nova linha na tabela
     tabela.appendChild(novaLinha);
 
+    // Atualizar os valores totais no rodapé
+    document.getElementById('valorTotalSemDesconto').textContent = `R$ ${valorTotalSemDesconto.toFixed(2)}`;
+    document.getElementById('valorTotalComDesconto').textContent = `R$ ${valorTotalComDesconto.toFixed(2)}`;
+
     // Limpar o formulário
     document.getElementById('productForm').reset();
 }
@@ -41,7 +53,19 @@ function enviarFormulario() {
 // Função para remover um produto da tabela
 function removerProduto(botao) {
     const linha = botao.parentNode.parentNode; // Pega a linha (tr) que contém o botão
-    linha.remove(); // Remove a linha da tabela
+    const precoTotal = parseFloat(linha.children[3].textContent.replace('R$ ', '').replace(',', '.'));
+    const precoComDesconto = parseFloat(linha.children[4].textContent.replace('R$ ', '').replace(',', '.'));
+
+    // Subtrair os valores removidos dos totais acumulados
+    valorTotalSemDesconto -= precoTotal;
+    valorTotalComDesconto -= precoComDesconto;
+
+    // Remover a linha da tabela
+    linha.remove();
+
+    // Atualizar os valores totais no rodapé
+    document.getElementById('valorTotalSemDesconto').textContent = `R$ ${valorTotalSemDesconto.toFixed(2)}`;
+    document.getElementById('valorTotalComDesconto').textContent = `R$ ${valorTotalComDesconto.toFixed(2)}`;
 }
 
 
@@ -101,6 +125,17 @@ function exportarPDF() {
                 5: { cellWidth: 30 }        // Largura fixa para "Diferença"
             },
         });
+
+        // Adicionar o valor total no final do PDF
+        doc.setFontSize(12);
+        const valorTotalTexto = `Valor Total: R$ ${valorTotalSemDesconto.toFixed(2)}`;
+        doc.text(valorTotalTexto, 14, doc.lastAutoTable.finalY + 10); // +10 para posicionar logo abaixo da tabela
+        
+        doc.setFontSize(12);
+        const valorTotalTextoDesconto = `Valor Total (Desconto): R$ ${valorTotalComDesconto.toFixed(2)}`;
+        doc.text(valorTotalTextoDesconto, 14, doc.lastAutoTable.finalY + 20); // +20 para posicionar logo abaixo da tabela
+
+
 
         // Fazendo o download do PDF
         doc.save('produtos.pdf');
