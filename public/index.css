@@ -191,3 +191,43 @@ h2 {
         transform: scale(1);
     }
 }
+
+
+
+.table th, .table td {
+  padding: 12px 15px; 
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.table tfoot td {
+  padding: 10px 15px;
+}
+
+/* Estilo para a div que envolve os totais */
+.Valores-container {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.Valores-container td {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.Valores-container .total-label {
+  font-weight: bold;
+  text-align: left;
+}
+
+.Valores-container .total-value {
+  font-weight: bold;
+  text-align: right;
+  color: #28a745;
+}
