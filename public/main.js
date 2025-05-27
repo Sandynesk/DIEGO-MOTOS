@@ -7,9 +7,10 @@ function enviarFormulario() {
     const nome = document.getElementById('nome').value;
     const preco = parseFloat(document.getElementById('preco').value);
     const quantidade = parseInt(document.getElementById('quantidade').value);
+    const placa = document.getElementById('placa').value;
 
     // Verificar se os campos foram preenchidos corretamente
-    if (!nome || isNaN(preco) || isNaN(quantidade)) {
+    if (!nome || isNaN(preco) || isNaN(quantidade) || !placa) {
         alert('Por favor, preencha todos os campos corretamente!');
         return;
     }
@@ -19,7 +20,7 @@ function enviarFormulario() {
     const precoComDesconto = precoTotal - (precoTotal * 0.06); // 6% de desconto
     const diferencaDesconto = precoTotal - precoComDesconto;
 
-    
+
     // Atualizar os totais acumulados
     valorTotalSemDesconto += precoTotal;
     valorTotalComDesconto += precoComDesconto;
@@ -29,14 +30,16 @@ function enviarFormulario() {
     const novaLinha = document.createElement('tr');
 
     novaLinha.innerHTML = `
-        <td>${nome}</td>
-        <td>R$ ${preco.toFixed(2)}</td>
-        <td>${quantidade}</td>
-        <td>R$ ${precoTotal.toFixed(2)}</td>
-        <td>R$ ${precoComDesconto.toFixed(2)}</td>
-        <td>R$ ${diferencaDesconto.toFixed(2)}</td>
-        <td><button class="btn btn-danger" onclick="removerProduto(this)">Remover</button></td>
-    `;
+    <td>${nome}</td>
+    <td>R$ ${preco.toFixed(2)}</td>
+    <td>${quantidade}</td>
+    <td>R$ ${precoTotal.toFixed(2)}</td>
+    <td>R$ ${precoComDesconto.toFixed(2)}</td>
+    <td>R$ ${diferencaDesconto.toFixed(2)}</td>
+    <td>${placa}</td>
+    <td><button class="btn btn-danger" onclick="removerProduto(this)">Remover</button></td>
+`;
+
 
     // Adicionar a nova linha na tabela
     tabela.appendChild(novaLinha);
@@ -89,17 +92,19 @@ function exportarPDF() {
 
     // Cabeçalhos da tabela
     const headers = [
-        ['Produto', 'Preço Unitário', 'Quantidade', 'Total', 'Preço com Desconto 6%', 'Diferença']
+        ['Produto', 'Preço Unitário', 'Quantidade', 'Total', 'Preço com Desconto 6%', 'Diferença', 'Placa']
     ];
+
 
     const rows = [];
 
     // Percorre as linhas da tabela e adiciona os dados ao PDF
     for (let row of table.rows) {
         const rowData = [];
-        for (let i = 0; i < row.cells.length - 1; i++) { // Ignora a coluna de "Ação"
+        for (let i = 0; i < row.cells.length - 1; i++) { // Pega tudo, menos o botão "Ação"
             rowData.push(row.cells[i].textContent.trim());
         }
+
 
         // Adiciona os dados da linha ao array de rows
         rows.push(rowData);
@@ -130,7 +135,7 @@ function exportarPDF() {
         doc.setFontSize(12);
         const valorTotalTexto = `Valor Total: R$ ${valorTotalSemDesconto.toFixed(2)}`;
         doc.text(valorTotalTexto, 14, doc.lastAutoTable.finalY + 10); // +10 para posicionar logo abaixo da tabela
-        
+
         doc.setFontSize(12);
         const valorTotalTextoDesconto = `Valor Total (Desconto): R$ ${valorTotalComDesconto.toFixed(2)}`;
         doc.text(valorTotalTextoDesconto, 14, doc.lastAutoTable.finalY + 20); // +20 para posicionar logo abaixo da tabela
