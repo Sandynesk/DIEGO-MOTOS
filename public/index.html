@@ -6,130 +6,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiegoMotos Cadastro</title>
     <link rel="icon" href="DiegoLogo-removebg-preview.ico" type="image/x-icon">
-    <link rel="stylesheet" href="index.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Adicionando fontes Quicksand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
+    <!-- Incluindo Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS Customizado (Apenas Animações e reset principal) -->
+    <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
+<body
+    class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen selection:bg-slate-800 selection:text-white">
 
-    <nav class="navbar bg-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand custom-text" href="#">
-                <img src="DiegoLogo-removebg-preview.png" alt="Logo" width="auto" height="54"
-                    class="d-inline-block align-text-top">
-                Diego Motos
-            </a>
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 shadow-xl border-b border-slate-700 w-full animate-slide-up"
+        style="animation-duration: 0.5s;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-20">
+                <a href="#" class="flex items-center gap-4 text-white hover:text-gray-200 transition-colors">
+                    <!-- Fundo branco para destacar a logo escura na navbar -->
+                    <div class="bg-white p-2 rounded-xl shadow-md border border-slate-300 flex items-center justify-center">
+                        <img src="DiegoLogo-removebg-preview.png" alt="Logo" class="h-12 w-auto object-contain">
+                    </div>
+                    <span class="text-2xl font-bold tracking-wide">Diego Motos</span>
+                </a>
+            </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h1>Cadastro de Produtos</h1>
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
 
-        <!-- Formulário -->
-        <form id="productForm">
-            <div class="row mb-3">
-                <div class="col">
-                    <label for="nome" class="form-label">Produto</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Digite o nome do produto">
-                </div>
-                <div class="col">
-                    <label for="preco" class="form-label">Preço Unitário</label>
-                    <input type="number" class="form-control" id="preco" placeholder="Digite o preço unitário">
-                </div>
-                <div class="col">
-                    <label for="quantidade" class="form-label">Quantidade</label>
-                    <input type="number" class="form-control" id="quantidade" placeholder="Digite a quantidade">
-                </div>
-                <div class="col">
-                    <label for="placa" class="form-label">Placa</label>
-                    <input type="text" class="form-control" id="placa" placeholder="Digite a placa">
+        <div class="mb-8 text-center md:text-left animate-slide-up" style="animation-delay: 0.1s;">
+            <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">Cadastro de Produtos</h1>
+            <p class="text-slate-500 mt-1 font-medium">Cadastre e gerencie o estoque e descontos dos produtos.</p>
+        </div>
+
+        <!-- Formulário Container -->
+        <div class="bg-white/90 backdrop-blur-md rounded-2xl border border-white/50 shadow-xl shadow-slate-200/50 p-6 sm:p-8 mb-8 animate-slide-up"
+            style="animation-delay: 0.2s;">
+            <form id="productForm">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                    <!-- Produto -->
+                    <div class="space-y-1.5">
+                        <label for="nome" class="block text-sm font-bold text-slate-600">Produto</label>
+                        <input type="text" id="nome" placeholder="Digite o nome do produto"
+                            class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-800 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-500/30 focus:border-slate-500 transition-all placeholder:text-slate-400 placeholder:font-medium">
+                    </div>
+
+                    <!-- Preço Unitário -->
+                    <div class="space-y-1.5">
+                        <label for="preco" class="block text-sm font-bold text-slate-600">Preço Unitário</label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold font-sans">R$</span>
+                            <input type="number" id="preco" placeholder="0.00"
+                                class="w-full rounded-xl border border-slate-300 bg-slate-50 pl-10 pr-4 py-2.5 text-slate-800 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-500/30 focus:border-slate-500 transition-all placeholder:text-slate-400 placeholder:font-medium">
+                        </div>
+                    </div>
+
+                    <!-- Quantidade -->
+                    <div class="space-y-1.5">
+                        <label for="quantidade" class="block text-sm font-bold text-slate-600">Quantidade</label>
+                        <input type="number" id="quantidade" placeholder="Ex: 2"
+                            class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-800 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-500/30 focus:border-slate-500 transition-all placeholder:text-slate-400 placeholder:font-medium">
+                    </div>
+
+                    <!-- Placa -->
+                    <div class="space-y-1.5">
+                        <label for="placa" class="block text-sm font-bold text-slate-600">Placa</label>
+                        <input type="text" id="placa" placeholder="Placa do veículo"
+                            class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-800 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-500/30 focus:border-slate-500 transition-all placeholder:text-slate-400 placeholder:font-medium uppercase">
+                    </div>
                 </div>
 
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <button type="button" onclick="enviarFormulario()" class="btn btn-primary">
-                        Enviar
+                <div class="mt-6 flex justify-center md:justify-end">
+                    <button type="button" onclick="enviarFormulario()"
+                        class="group bg-gradient-to-r from-slate-800 to-black hover:from-black hover:to-slate-800 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 w-full md:w-auto justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            class="bi bi-plus-circle transition-transform duration-500 ease-in-out group-hover:rotate-90"
+                            viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                        Adicionar
                     </button>
                 </div>
+            </form>
+        </div>
+
+        <!-- Tabela -->
+        <div class="bg-white/90 backdrop-blur-md rounded-2xl border border-white/50 shadow-xl shadow-slate-200/50 overflow-hidden mb-8 animate-slide-up"
+            style="animation-delay: 0.3s;">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse min-w-[1000px]">
+                    <thead>
+                        <tr class="bg-slate-100 rounded-t-2xl">
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Produto</th>
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Preço Unid</th>
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Qtd</th>
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Total</th>
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Com Desconto</th>
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Diferença</th>
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Placa</th>
+                            <th
+                                class="px-5 py-4 text-[13px] font-bold text-slate-500 uppercase tracking-wider border-b-2 border-slate-200">
+                                Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody" class="divide-y divide-slate-100">
+                        <!-- Tabela preenchida pelo JS -->
+                    </tbody>
+                </table>
             </div>
-        </form>
-
-
-        <!-- Tabela para exibir os produtos -->
-        <table class="table table-bordered mt-4">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Preço Unitário</th>
-                    <th>Quantidade</th>
-                    <th>Total</th>
-                    <th>Preço com Desconto</th>
-                    <th>Diferença</th>
-                    <th>Placa</th>
-                    <th>Ação</th>
-                </tr>
-            </thead>
-
-            <tbody id="productTableBody">
-                <!-- As linhas da tabela serão adicionadas aqui pelo JavaScript -->
-            </tbody>
-
-        </table>
-
-        <div class="Valores-container">
-            <table>
-                <tbody>
-                    <tr>
-                        <td class="total-label">Valor Total (Sem Desconto)</td>
-                        <td id="valorTotalSemDesconto" class="total-value">R$ 0,00</td>
-                    </tr>
-                    <tr>
-                        <td class="total-label">Valor Total (Com Desconto)</td>
-                        <td id="valorTotalComDesconto" class="total-value">R$ 0,00</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
-        <!-- Botão para exportar para PDF -->
-        <div class="col text-center mt-3" id="pdf-button">
-            <button type="button" onclick="exportarPDF()" class="btn btn-success">
-                Exportar para PDF
-            </button>
+        <!-- Rodapés da Tabela e PDF -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center animate-slide-up" style="animation-delay: 0.4s;">
+
+            <div class="flex justify-center md:justify-start order-2 md:order-1">
+                <button type="button" onclick="exportarPDF()"
+                    class="group bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-file-earmark-pdf group-hover:-translate-y-1 transition-transform duration-300"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                        <path
+                            d="M4.603 14.087a.8.8 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.7 7.7 0 0 1 1.482-.645 20 20 0 0 0 1.062-2.227 7.3 7.3 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a11 11 0 0 0 .98 1.686 5.8 5.8 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.86.86 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.7 5.7 0 0 1-.911-.95 11.6 11.6 0 0 0-1.997.406 11.3 11.3 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.8.8 0 0 1-.58.029m1.379-1.901q-.25.115-.459.246c-.328.205-.543.411-.595.515q-.036.072.006.115.027.027.087.016c.16-.03.54-.246.962-.892m-.893-1.637q.255-.098.536-.182a21 21 0 0 1-.872 2.105q-.169-.26-.339-.519c-.21-.321-.38-.616-.411-.814-.01-.06-.008-.12.008-.145.021-.035.084-.047.19-.017.111.031.25.07.411.12.115.035.25.077.382.117m1.52-5.467c-.024-.26-.051-.518-.088-.745a1.1 1.1 0 0 0-.08-.242 1 1 0 0 0-.07-.154c-.046-.075-.125-.133-.243-.162-.128-.031-.274-.017-.37.051-.082.058-.13.16-.145.289-.015.132-.016.326.009.566.024.238.077.518.15.82a6.7 6.7 0 0 0 .221.758q.124-.468.256-.912c.045-.152.091-.3.136-.45M8.423 9.429a10 10 0 0 1 1.4-3.111 7.2 7.2 0 0 0-.214 1.252q-.025.334.025.666a5.5 5.5 0 0 0 .15.717q.16-.062.348-.119a12 12 0 0 1 1.348-.344c.08-.01.16-.02.241-.027a4.3 4.3 0 0 0-1.63-.448 9 9 0 0 0-1.897 1.011" />
+                    </svg>
+                    Exportar para PDF
+                </button>
+            </div>
+
+            <div class="order-1 md:order-2 flex justify-center md:justify-end">
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-md p-6 w-full max-w-sm">
+                    <table class="w-full">
+                        <tbody>
+                            <tr class="border-b border-slate-100">
+                                <td class="text-slate-500 font-bold py-2">Sem Desconto</td>
+                                <td id="valorTotalSemDesconto"
+                                    class="text-right text-slate-800 font-extrabold text-lg py-2">R$ 0,00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-slate-500 font-bold py-2 pt-3">Com Desconto</td>
+                                <td id="valorTotalComDesconto"
+                                    class="text-right text-emerald-500 font-extrabold text-xl py-2 pt-3">R$ 0,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
+    </main>
 
-    </div>
-
-
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Emanuel Sales. Todos os direitos reservados.</p>
-            <nav>
-                <a href="https://www.instagram.com/sandynesk/">Sobre</a> |
-                <a href="#">Política de Privacidade</a> |
-                <a href="https://api.whatsapp.com/send/?phone=71985288558">Contato</a>
-            </nav>
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 py-10 mt-auto animate-slide-up"
+        style="animation-delay: 0.5s;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm font-medium">&copy; 2026 Emanuel Sales. Todos os direitos reservados.</p>
+            <div class="flex justify-center gap-6 mt-4 text-sm font-semibold">
+                <a href="https://www.instagram.com/sandynesk/" target="_blank"
+                    class="hover:text-white transition-colors">Sobre</a>
+                <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+                <a href="https://api.whatsapp.com/send/?phone=71985288558" target="_blank"
+                    class="hover:text-white transition-colors">Contato</a>
+            </div>
         </div>
     </footer>
 
-
-
-
-
     <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
     <!-- jsPDF autoTable -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
     <script src="main.js"></script>
-
 </body>
 
 </html>
